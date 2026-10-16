@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REZA NET - Provider Jaringan Internet Cepat & Stabil</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Custom Notification / Message Box -->
+    <div id="notification-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm hidden">
+        <div class="bg-white rounded-2xl p-6 max-w-sm w-full mx-4 shadow-2xl transform transition-all scale-95 opacity-0" id="modal-content">
+            <div class="text-center">
+                <div id="modal-icon" class="w-16 h-16 bg-brand-100 text-brand-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h3 id="modal-title" class="text-xl font-bold text-slate-900 mb-2">Berhasil!</h3>
+                <p id="modal-message" class="text-slate-600 text-sm mb-6">Pesan Anda berhasil dikirim.</p>
+                <button onclick="closeModal()" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl transition duration-200">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-blue-400 flex items-center justify-center text-white font-extrabold text-xl shadow-md group-hover:scale-105 transition">
+                    R
+                </div>
+                <span class="text-2xl font-black tracking-tight text-slate-900">REZA<span class="text-brand-600">NET</span></span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600">
+                <a href="#beranda" class="hover:text-brand-600 transition">Beranda</a>
+                <a href="#layanan" class="hover:text-brand-600 transition">Paket Layanan</a>
+                <a href="#keunggulan" class="hover:text-brand-600 transition">Keunggulan</a>
+                <a href="#coverage" class="hover:text-brand-600 transition">Cek Area</a>
+                <a href="#testimoni" class="hover:text-brand-600 transition">Testimoni</a>
+                <a href="#kontak" class="hover:text-brand-600 transition">Kontak</a>
+            </nav>
+
+            <!-- CTA Header -->
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#coverage" class="px-5 py-2.5 rounded-xl bg-brand-50 text-brand-600 font-semibold hover:bg-brand-100 transition">Cek Coverage</a>
+                <a href="#layanan" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold shadow-lg shadow-brand-500/25 transition">Berlangganan</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-700 focus:outline-none p-2">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-4 shadow-xl">
+            <a href="#beranda" class="block text-slate-700 font-medium py-1">Beranda</a>
+            <a href="#layanan" class="block text-slate-700 font-medium py-1">Paket Layanan</a>
+            <a href="#keunggulan" class="block text-slate-700 font-medium py-1">Keunggulan</a>
+            <a href="#coverage" class="block text-slate-700 font-medium py-1">Cek Area</a>
+            <a href="#testimoni" class="block text-slate-700 font-medium py-1">Testimoni</a>
+            <a href="#kontak" class="block text-slate-700 font-medium py-1">Kontak</a>
+            <div class="pt-2 flex flex-col gap-2">
+                <a href="#coverage" class="w-full text-center py-3 rounded-xl bg-brand-50 text-brand-600 font-semibold">Cek Coverage</a>
+                <a href="#layanan" class="w-full text-center py-3 rounded-xl bg-brand-600 text-white font-semibold">Berlangganan</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-b from-brand-50/50 via-white to-white overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-100 text-brand-600 font-semibold text-sm">
+                        <i class="fa-solid fa-bolt"></i> Jaringan Fiber Optic 100% Tanpa Batas
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight">
+                        Internet Super Cepat & Stabil untuk <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-blue-400">Rumah & Bisnis</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0">
+                        Nikmati streaming tanpa buffering, mabar tanpa lag, dan produktivitas kerja maksimal dengan koneksi internet fiber optic terhandal dari REZA NET.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#coverage" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-center shadow-xl shadow-brand-500/30 transition duration-200 flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-location-dot"></i> Cek Coverage Area
+                        </a>
+                        <a href="#layanan" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-bold text-center transition duration-200 flex items-center justify-center gap-3">
+                            Lihat Paket <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-6 pt-8 border-t border-slate-200 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-slate-950">99.9%</div>
+                            <div class="text-xs sm:text-sm text-slate-500 font-medium">Uptime Jaringan</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-slate-950">15.000+</div>
+                            <div class="text-xs sm:text-sm text-slate-500 font-medium">Pelanggan Setia</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-slate-950">24/7</div>
+                            <div class="text-xs sm:text-sm text-slate-500 font-medium">Support Teknis</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Hero Graphic / Illustration Card -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative w-full max-w-md mx-auto aspect-square bg-gradient-to-tr from-brand-600 to-blue-400 rounded-3xl p-8 shadow-2xl flex flex-col justify-between text-white overflow-hidden">
+                        <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-white/10 rounded-full blur-2xl"></div>
+                        <div>
+                            <div class="flex justify-between items-center mb-6">
+                                <span class="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold">REZA NET ULTRA</span>
+                                <i class="fa-solid fa-wifi text-3xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-1">Kecepatan Maksimal</h3>
+                            <p class="text-brand-100 text-sm">Fiber Optic Direct to Home</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20 space-y-3">
+                            <div class="flex justify-between text-sm font-medium">
+                                <span>Download Speed</span>
+                                <span class="font-bold">300 Mbps</span>
+                            </div>
+                            <div class="w-full bg-white/20 h-2 rounded-full overflow-hidden">
+                                <div class="bg-white h-full rounded-full w-4/5"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-brand-100">
+                                <span>Ping: 3ms</span>
+                                <span>Unlimited Quota</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Keunggulan Section -->
+    <section id="keunggulan" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+                <span class="px-4 py-1.5 rounded-full bg-brand-50 text-brand-600 font-semibold text-sm">Kenapa Memilih Kami?</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Keunggulan REZA NET</h2>
+                <p class="text-slate-600">Kami berkomitmen memberikan pengalaman berinternet terbaik dengan teknologi tercanggih tanpa kompromi.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-slate-50 border border-slate-100 p-8 rounded-3xl hover:shadow-xl transition duration-300 group">
+                    <div class="w-14 h-14 bg-brand-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition duration-300 shadow-lg shadow-brand-500/25">
+                        <i class="fa-solid fa-infinity"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Unlimited Quota</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Nikmati kebebasan berselancar sepuasnya tanpa takut kehabisan kuota atau batasan FUP (Fair Usage Policy).</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-slate-50 border border-slate-100 p-8 rounded-3xl hover:shadow-xl transition duration-300 group">
+                    <div class="w-14 h-14 bg-brand-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition duration-300 shadow-lg shadow-brand-500/25">
+                        <i class="fa-solid fa-gauge-high"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">100% Fiber Optic</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Menggunakan jalur kabel fiber optic murni berteknologi tinggi yang tahan terhadap cuaca dan gangguan sinyal.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-slate-50 border border-slate-100 p-8 rounded-3xl hover:shadow-xl transition duration-300 group">
+                    <div class="w-14 h-14 bg-brand-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition duration-300 shadow-lg shadow-brand-500/25">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Support 24/7</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Tim teknis handal dan customer service kami siap membantu Anda kapanpun dibutuhkan, siang maupun malam.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-slate-50 border border-slate-100 p-8 rounded-3xl hover:shadow-xl transition duration-300 group">
+                    <div class="w-14 h-14 bg-brand-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition duration-300 shadow-lg shadow-brand-500/25">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Koneksi Stabil</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Rasio upload dan download simetris serta latensi rendah, sangat nyaman untuk meeting online maupun gaming.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Paket Layanan Section -->
+    <section id="layanan" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+                <span class="px-4 py-1.5 rounded-full bg-brand-50 text-brand-600 font-semibold text-sm">Pilihan Paket</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Paket Internet REZA NET</h2>
+                <p class="text-slate-600">Pilih paket terbaik yang sesuai dengan kebutuhan rumah, hobi gaming, atau kantor Anda.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                <!-- Paket Rumah -->
+                <div class="bg-white rounded-3xl border border-slate-200 p-8 flex flex-col justify-between shadow-sm hover:shadow-xl transition duration-300">
+                    <div>
+                        <div class="inline-block px-3 py-1 bg-brand-50 text-brand-600 rounded-full text-xs font-semibold mb-4">PAKET RUMAH</div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-2">Family Home</h3>
+                        <p class="text-slate-500 text-sm mb-6">Ideal untuk browsing, media sosial, dan streaming keluarga.</p>
+                        <div class="mb-6 pb-6 border-b border-slate-100">
+                            <span class="text-4xl font-black text-slate-900">Rp 250rb</span>
+                            <span class="text-slate-500 text-sm">/bulan</span>
+                        </div>
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center gap-3 text-sm text-slate-700">
+                                <i class="fa-solid fa-circle-check text-brand-500 text-base"></i>
+                                <span class="font-bold text-slate-900">30 Mbps</span> Kecepatan Download
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-slate-700">
+                                <i class="fa-solid fa-circle-check text-brand-500 text-base"></i>
+                                <span>Unlimited Kuota Tanpa FUP</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-slate-700">
+                                <i class="fa-solid fa-circle-check text-brand-500 text-base"></i>
+                                <span>Cocok untuk 5-7 Perangkat</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-slate-700">
+                                <i class="fa-solid fa-circle-check text-brand-500 text-base"></i>
+                                <span>Gratis Biaya Instalasi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="orderPackage('Family Home (30 Mbps)')" class="w-full py-4 rounded-xl bg-brand-50 hover:bg-brand-600 hover:text-white text-brand-600 font-bold transition duration-200 text-center">
+                        Pilih Paket
+                    </button>
+                </div>
+
+                <!-- Paket Gaming (Featured) -->
+                <div class="bg-gradient-to-b from-brand-900 to-slate-900 rounded-3xl border border-brand-700 p-8 flex flex-col justify-between shadow-2xl relative text-white transform md:-translate-y-4">
+                    <div class="absolute -top-4 right-8 bg-brand-500 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg">
+                        Paling Populer
+                    </div>
+                    <div>
+                        <div class="inline-block px-3 py-1 bg-white/10 text-brand-200 rounded-full text-xs font-semibold mb-4">PAKET GAMING</div>
+                        <h3 class="text-2xl font-bold mb-2">Pro Gamer & Creator</h3>
+                        <p class="text-brand-200 text-sm mb-6">Latensi super rendah dan upload simetris untuk gaming kompetitif.</p>
+                        <div class="mb-6 pb-6 border-b border-brand-800">
+                            <span class="text-4xl font-black">Rp 450rb</span>
+                            <span class="text-brand-200 text-sm">/bulan</span>
+                        </div>
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center gap-3 text-sm">
+                                <i class="fa-solid fa-circle-check text-brand-400 text-base"></i>
+                                <span class="font-bold text-white">100 Mbps</span> Kecepatan Stabil
+                            </div>
+                            <div class="flex items-center gap-3 text-sm">
+                                <i class="fa-solid fa-circle-check text-brand-400 text-base"></i>
+                                <span>Unlimited Quota (Anti Lag)</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm">
+                                <i class="fa-solid fa-circle-check text-brand-400 text-base"></i>
+                                <span>Prioritas Bandwidth (Low Ping)</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm">
+                                <i class="fa-solid fa-circle-check text-brand-400 text-base"></i>
+                                <span>Cocok untuk 12+ Perangkat</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="orderPackage('Pro Gamer (100 Mbps)')" class="w-full py-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold transition duration-200 text-center shadow-lg shadow-brand-500/30">
+                        Pilih Paket
+                    </button>
+                </div>
+
+                <!-- Paket Bisnis / Kantor -->
+                <div class="bg-white rounded-3xl border border-slate-200 p-8 flex flex-col justify-between shadow-sm hover:shadow-xl transition duration-300">
+                    <div>
+                        <div class="inline-block px-3 py-1 bg-brand-50 text-brand-600 rounded-full text-xs font-semibold mb-4">PAKET BISNIS</div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Enterprise Office</h3>
+                    <p class="text-slate-500 text-sm mb-6">Koneksi dedicated berkecepatan tinggi untuk operasional kantor & instansi.</p>
+                    <div class="mb-6 pb-6 border-b border-slate-100">
+                        <span class="text-4xl font-black text-slate-900">Rp 850rb</span>
+                        <span class="text-slate-500 text-sm">/bulan</span>
+                    </div>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center gap-3 text-sm text-slate-700">
+                            <i class="fa-solid fa-circle-check text-brand-500 text-base"></i>
+                            <span class="font-bold text-slate-900">300 Mbps</span> Kecepatan Tinggi
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-700">
+                            <i class="fa-solid fa-circle-check text-brand-500 text-base"></i>
+                            <span>IP Static / Public Tersedia</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-700">
+                            <i class="fa-solid fa-circle-check text-brand-500 text-base"></i>
+                            <span>Support Prioritas Utama 24/7</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-700">
+                            <i class="fa-solid fa-circle-check text-brand-500 text-base"></i>
+                            <span>Unlimited Tanpa Batasan FUP</span>
+                        </div>
+                    </div>
+                    </div>
+                    <button onclick="orderPackage('Enterprise Office (300 Mbps)')" class="w-full py-4 rounded-xl bg-brand-50 hover:bg-brand-600 hover:text-white text-brand-600 font-bold transition duration-200 text-center">
+                        Pilih Paket
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cek Jangkauan / Coverage Section -->
+    <section id="coverage" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-r from-brand-900 to-brand-700 rounded-3xl p-8 sm:p-12 lg:p-16 text-white relative overflow-hidden shadow-2xl">
+                <div class="absolute right-0 top-0 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="max-w-2xl mx-auto text-center space-y-6 relative z-10">
+                    <span class="px-4 py-1.5 rounded-full bg-white/10 text-brand-200 font-semibold text-sm">Simulasi Area</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Cek Jangkauan Fiber Optic di Lokasi Anda</h2>
+                    <p class="text-brand-100 text-sm sm:text-base">
+                        Masukkan nama kota, kecamatan, atau alamat lengkap Anda untuk memastikan area Anda sudah tercover jaringan REZA NET.
+                    </p>
+                    
+                    <form id="coverage-form" onsubmit="checkCoverage(event)" class="flex flex-col sm:flex-row gap-3 pt-4">
+                        <div class="relative flex-grow">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </span>
+                            <input type="text" id="coverage-input" required placeholder="Contoh: Jl. Sudirman No. 45, Jakarta" class="w-full pl-11 pr-4 py-4 rounded-2xl bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-brand-400/50 shadow-lg">
+                        </div>
+                        <button type="submit" class="px-8 py-4 bg-white text-brand-700 hover:bg-brand-50 font-bold rounded-2xl transition duration-200 shadow-lg whitespace-nowrap">
+                            Cek Sekarang
+                        </button>
+                    </form>
+                    
+                    <div id="coverage-result" class="hidden mt-6 p-4 rounded-2xl text-left font-medium text-sm"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimoni Pelanggan Section -->
+    <section id="testimoni" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+                <span class="px-4 py-1.5 rounded-full bg-brand-50 text-brand-600 font-semibold text-sm">Testimoni</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Apa Kata Pelanggan Kami?</h2>
+                <p class="text-slate-600">Ribuan pelanggan rumahan dan bisnis telah merasakan kenyamanan bersama REZA NET.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testi 1 -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 mb-4 text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            "Pakai paket gaming dari REZA NET beneran anti lag! Ping stabil di 4-5ms, download game ukuran besar cuma hitungan menit. Mantap banget!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-slate-100">
+                        <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-lg">
+                            AR
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900">Ahmad Rifai</h4>
+                            <p class="text-xs text-slate-500">Streamer & Gamer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testi 2 -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 mb-4 text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            "Untuk urusan kantor, kestabilan jaringan nomor satu. REZA NET sangat diandalkan untuk meeting online tanpa putus-putus dan transfer file besar lancar."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-slate-100">
+                        <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-lg">
+                            SD
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900">Siti Dewi</h4>
+                            <p class="text-xs text-slate-500">Manager Operasional</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testi 3 -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 mb-4 text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            "Puas banget pakai paket keluarga rumah. Anak-anak sekolah online lancar, saya dan suami WFH juga tidak ada hambatan sama sekali. Recommended!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-slate-100">
+                        <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-lg">
+                            BP
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900">Budi Prasetyo</h4>
+                            <p class="text-xs text-slate-500">Ibu/Bapak Rumah Tangga</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak / Hubungi Kami Section -->
+    <section id="kontak" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="px-4 py-1.5 rounded-full bg-brand-50 text-brand-600 font-semibold text-sm">Hubungi Kami</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Punya Pertanyaan atau Butuh Konsultasi?</h2>
+                    <p class="text-slate-600">Tim kami siap melayani pertanyaan seputar pendaftaran, kendala jaringan, maupun ekspansi wilayah baru.</p>
+                    
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-500 font-medium">Call Center 24 Jam</div>
+                                <div class="font-bold text-slate-900">0800-1-REZANET (7392)</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-500 font-medium">WhatsApp CS</div>
+                                <div class="font-bold text-slate-900">+62 812-3456-7890</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-500 font-medium">Email Resmi</div>
+                                <div class="font-bold text-slate-900">support@rezanet.id</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-slate-50 border border-slate-100 p-8 sm:p-10 rounded-3xl shadow-sm">
+                    <form id="contact-form" onsubmit="submitContact(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Lengkap</label>
+                                <input type="text" id="contact-name" required placeholder="Masukkan nama Anda" class="w-full px-4 py-3.5 rounded-xl bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Nomor WhatsApp</label>
+                                <input type="tel" id="contact-phone" required placeholder="Contoh: 0812xxxxxxxx" class="w-full px-4 py-3.5 rounded-xl bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Pesan atau Kendala</label>
+                            <textarea rows="4" id="contact-message" required placeholder="Tuliskan pesan atau pertanyaan Anda di sini..." class="w-full px-4 py-3.5 rounded-xl bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold shadow-lg shadow-brand-500/25 transition duration-200">
+                            Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white pt-16 pb-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-blue-400 flex items-center justify-center text-white font-extrabold text-xl shadow-md">
+                            R
+                        </div>
+                        <span class="text-2xl font-black tracking-tight text-white">REZA<span class="text-brand-500">NET</span></span>
+                    </div>
+                    <p class="text-slate-400 text-sm max-w-sm leading-relaxed">
+                        Penyedia layanan internet broadband berbasis 100% fiber optic tercepat dan terstabil untuk kebutuhan digital modern Anda.
+                    </p>
+                    <div class="pt-2">
+                        <a href="https://wa.me/6288801039327" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow-lg shadow-emerald-600/30 transition-all duration-200 transform hover:-translate-y-0.5">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                            <span>Hubungi WhatsApp Resmi</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white mb-4">Navigasi Utama</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li><a href="#beranda" class="hover:text-white transition">Beranda</a></li>
+                        <li><a href="#layanan" class="hover:text-white transition">Paket Layanan</a></li>
+                        <li><a href="#keunggulan" class="hover:text-white transition">Keunggulan</a></li>
+                        <li><a href="#coverage" class="hover:text-white transition">Cek Coverage</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white mb-4">Layanan Paket</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li><a href="#layanan" class="hover:text-white transition">Family Home (30 Mbps)</a></li>
+                        <li><a href="#layanan" class="hover:text-white transition">Pro Gamer (100 Mbps)</a></li>
+                        <li><a href="#layanan" class="hover:text-white transition">Enterprise Office (300 Mbps)</a></li>
+                        <li><a href="#layanan" class="hover:text-white transition">Custom Dedicated</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white mb-4">Legal & Dukungan</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-white transition">Syarat & Ketentuan</a></li>
+                        <li><a href="#" class="hover:text-white transition">Kebijakan Privasi</a></li>
+                        <li><a href="#kontak" class="hover:text-white transition">Pusat Bantuan</a></li>
+                        <li><a href="#kontak" class="hover:text-white transition">Hubungi Kami</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 text-center text-sm text-slate-500">
+                &copy; 2026 REZA NET. Hak Cipta Dilindungi Undang-Undang.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Interactivity -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Custom Modal Functions
+        function showModal(title, message, isSuccess = true) {
+            const modal = document.getElementById('notification-modal');
+            const content = document.getElementById('modal-content');
+            const titleEl = document.getElementById('modal-title');
+            const msgEl = document.getElementById('modal-message');
+            const iconEl = document.getElementById('modal-icon');
+
+            titleEl.innerText = title;
+            msgEl.innerText = message;
+
+            if (isSuccess) {
+                iconEl.className = "w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl";
+                iconEl.innerHTML = '<i class="fa-solid fa-check"></i>';
+            } else {
+                iconEl.className = "w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl";
+                iconEl.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+            }
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('notification-modal');
+            const content = document.getElementById('modal-content');
+            
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 200);
+        }
+
+        // Order Package simulation
+        function orderPackage(packageName) {
+            showModal("Formulir Berlangganan", `Terima kasih! Anda memilih ${packageName}. Tim marketing kami akan segera menghubungi Anda untuk proses registrasi dan pemasangan.`);
+        }
+
+        // Coverage Area simulation
+        function checkCoverage(e) {
+            e.preventDefault();
+            const input = document.getElementById('coverage-input').value.trim();
+            const resultDiv = document.getElementById('coverage-result');
+            
+            resultDiv.classList.remove('hidden');
+            
+            // Simulation logic
+            const randomCheck = input.length % 2 === 0;
+            if (randomCheck) {
+                resultDiv.className = "mt-6 p-4 rounded-2xl bg-emerald-500/20 border border-emerald-400 text-emerald-100 font-medium text-sm";
+                resultDiv.innerHTML = `<div class="flex items-center gap-2 font-bold mb-1 text-emerald-300"><i class="fa-solid fa-circle-check"></i> Area Tercover!</div> Selamat! Lokasi <b>"${input}"</b> sudah terjangkau jaringan Fiber Optic REZA NET. Anda bisa langsung melakukan pendaftaran pemasangan.`;
+            } else {
+                resultDiv.className = "mt-6 p-4 rounded-2xl bg-amber-500/20 border border-amber-400 text-amber-100 font-medium text-sm";
+                resultDiv.innerHTML = `<div class="flex items-center gap-2 font-bold mb-1 text-amber-300"><i class="fa-solid fa-clock"></i> Dalam Perluasan Jaringan</div> Mohon maaf, area <b>"${input}"</b> saat ini sedang dalam tahap ekspansi. Tinggalkan nomor kontak Anda agar kami beri kabar saat jaringan sudah aktif.`;
+            }
+        }
+
+        // Contact Form Submission
+        function submitContact(e) {
+            e.preventDefault();
+            const name = document.getElementById('contact-name').value;
+            showModal("Pesan Terkirim", `Halo ${name}, pesan Anda telah diterima oleh tim support REZA NET. Kami akan merespons secepatnya via WhatsApp.`);
+            document.getElementById('contact-form').reset();
+        }
+    </script>
+</body>
+</html>
